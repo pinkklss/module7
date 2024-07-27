@@ -14,16 +14,19 @@ class Shop:
 
     def get_products(self):
         with open(self.__file_name, 'r') as file:
-            return file.read()
+            f_r = file.read()
+            return f'{f_r}'
 
     def add(self, *products):
-        prod = self.get_products()
         for product in products:
-            if product.name in prod:
-                print(f'Продукт {product} уже есть в магазине')
-            else:
-                with open(self.__file_name, 'a') as file:
-                    file.write(f'{product}\n')
+            with open(self.__file_name, 'r') as file:
+                f = file.read()
+                pr = str(product)
+                if pr in f:
+                    print(f'Продукт {pr} уже есть в магазине')
+                else:
+                    with open(self.__file_name, 'a') as file:
+                        file.write(f'{pr}\n')
 
 
 s1 = Shop()
