@@ -1,3 +1,4 @@
+import os
 class Product:
     def __init__(self, name, weight, category):
         self.name = name
@@ -11,6 +12,9 @@ class Product:
 class Shop:
     def __init__(self):
         self.__file_name = 'products.txt'
+        if not os.path.isfile(self.__file_name):
+            with open(self.__file_name, 'w') as file:
+                pass
 
     def get_products(self):
         with open(self.__file_name, 'r') as file:
@@ -35,6 +39,10 @@ p2 = Product('Spaghetti', 3.4, 'Groceries')
 p3 = Product('Potato', 5.5, 'Vegetables')
 
 print(p2)  # str
+
+s1.add(p1, p2, p3)
+
+print(s1.get_products())
 
 s1.add(p1, p2, p3)
 
